@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thanh toán - Pconnect</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/shopping.css" />
+  </head>
+  <body class="shopping-page">
+    <header class="site-header">
+      <aside class="sidebar collapsed" id="sidebar">
+        <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+        <a class="sidebar-item" href="./index.html"
+          >🏠 <span>Trang chủ</span></a
+        >
+        <a class="sidebar-item" href="./reels.html">🎬 <span>Reels</span></a>
+        <a
+          class="sidebar-item"
+          href="./index.html#shopping"
+          onclick="window.location.href = './index.html#shopping'"
+          ><span class="sidebar-icon">&#128722;</span> <span>Mua sắm</span></a
+        >
+        <a class="sidebar-item active" href="./cart.html"
+          >🧺 <span>Giỏ hàng</span></a
+        >
+        <a class="sidebar-item" href="./friends.html">👥 <span>Bạn bè</span></a>
+      </aside>
+
+      <nav class="navbar">
+        <div class="nav-left">
+          <div class="logo">P</div>
+          <input type="text" placeholder="Thanh toán an toàn" />
+        </div>
+        <div class="nav-center">
+          <a class="nav-icon" href="./index.html">🏠</a>
+          <a class="nav-icon" href="./reels.html">🎬</a>
+          <a
+            class="nav-icon"
+            href="./index.html#shopping"
+            onclick="window.location.href = './index.html#shopping'"
+            >&#128722;</a
+          >
+          <a class="nav-icon active" href="./cart.html">🧺</a>
+          <a class="nav-icon" href="./friends.html">👥</a>
+        </div>
+        <div class="nav-right">
+          <button class="profile-button" id="profileButton" type="button">
+            <span class="profile-avatar" data-user-avatar>P</span>
+            <span id="navProfileName">Profile</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="checkout-main">
+      <section class="checkout-container">
+        <div class="checkout-left">
+          <div class="checkout-product" id="checkoutProduct">
+            <p class="grid-message">Đang tải sản phẩm thanh toán...</p>
+          </div>
+        </div>
+
+        <div class="checkout-right">
+          <section class="checkout-methods">
+            <h2>Hình thức thanh toán</h2>
+            <p class="secure-note">🛡️ Thanh toán an toàn, bảo mật</p>
+            <button
+              class="payment-method active"
+              type="button"
+              data-method="Thẻ ngân hàng"
+            >
+              <div>
+                <span
+                  style="display: block; font-size: 0.9rem; font-weight: 600"
+                  >Thẻ ngân hàng</span
+                >
+                <strong
+                  style="display: block; font-size: 0.85rem; margin-top: 4px"
+                  >VISA · MasterCard · Napas</strong
+                >
+              </div>
+              <span style="font-size: 1.2rem">✓</span>
+            </button>
+            <button class="payment-method" type="button" data-method="Ví MoMo">
+              <span>💗 Ví MoMo</span>
+              <span style="color: #e5e7eb">›</span>
+            </button>
+            <button class="payment-method" type="button" data-method="ZaloPay">
+              <span>💙 ZaloPay</span>
+              <span style="color: #e5e7eb">›</span>
+            </button>
+            <button
+              class="payment-method"
+              type="button"
+              data-method="Chuyển khoản"
+            >
+              <span>🏦 Chuyển khoản</span>
+              <span style="color: #e5e7eb">›</span>
+            </button>
+
+            <div class="checkout-summary">
+              <div class="summary-row">
+                <span>Tổng tiền</span>
+                <strong id="checkoutTotal">0đ</strong>
+              </div>
+              <div class="summary-safe">
+                🛡️ Bảo mật<br /><small>100% an toàn</small>
+              </div>
+              <button class="pay-button" id="payButton" type="button">
+                Thanh toán →
+              </button>
+            </div>
+          </section>
+        </div>
+
+        <p class="checkout-message" id="checkoutMessage"></p>
+      </section>
+
+      <section class="profile-panel" id="profilePanel">
+        <div class="profile-card-top">
+          <div class="profile-avatar-large" data-user-avatar>P</div>
+
+          <div>
+            <h3 id="profileName">Profile</h3>
+            <p id="profileEmail"></p>
+          </div>
+        </div>
+
+        <div class="profile-theme-row">
+          <span>Chế độ giao diện</span>
+
+          <button
+            class="theme-toggle-btn"
+            id="darkModeBtn"
+            type="button"
+            onclick="toggleDarkMode()"
+          >
+            Tối
+          </button>
+        </div>
+
+        <label class="avatar-upload-btn" for="avatarInput">
+          Tải ảnh đại diện
+        </label>
+
+        <input type="file" id="avatarInput" accept="image/*" />
+
+        <button class="logout-btn" id="logoutBtn" type="button">
+          Đăng xuất
+        </button>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <h3>Pconnect</h3>
+          <p>Thông tin của bạn được bảo mật tuyệt đối.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function toggleSidebar() {
+        document.getElementById("sidebar").classList.toggle("collapsed");
+      }
+    </script>
+    <script type="module" src="./js/checkout.js"></script>
+    <script type="module" src="./js/profile-auth.js"></script>
+    <script>
+      function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+
+        const enabled = document.body.classList.contains("dark-mode");
+
+        localStorage.setItem("darkMode", enabled);
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const enabled = localStorage.getItem("darkMode") === "true";
+
+        if (enabled) {
+          document.body.classList.add("dark-mode");
+        }
+      });
+    </script>
+  </body>
+</html>

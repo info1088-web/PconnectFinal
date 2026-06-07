@@ -1,0 +1,455 @@
+﻿<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pconnect</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/reels.css" />
+    <link rel="stylesheet" href="./css/friends.css" />
+    <link rel="stylesheet" href="./css/shopping.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <aside class="sidebar collapsed" id="sidebar">
+        <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+        <a
+          class="sidebar-item active"
+          href="#home"
+          data-view-nav="home"
+          onclick="showView('home')"
+          >🏠 <span>Trang chủ</span></a
+        >
+        <a
+          class="sidebar-item"
+          href="#reels"
+          data-view-nav="reels"
+          onclick="showView('reels')"
+          >🎬 <span>Reels</span></a
+        >
+        <a
+          class="sidebar-item"
+          href="#shopping"
+          data-view-nav="shopping"
+          onclick="showView('shopping')"
+          ><span class="sidebar-icon">&#128722;</span> <span>Mua sắm</span></a
+        >
+        <a
+          class="sidebar-item"
+          href="#friends"
+          data-view-nav="friends"
+          onclick="showView('friends')"
+          >👥 <span>Bạn bè</span></a
+        >
+        <button
+          class="sidebar-item"
+          type="button"
+          onclick="toggleNotificationPanel()"
+        >
+          🔔 <span>Thông báo</span>
+        </button>
+        <a class="sidebar-item" href="./cart.html">🧺 <span>Giỏ hàng</span></a>
+      </aside>
+
+      <nav class="navbar">
+        <div class="nav-left">
+          <div class="logo">P</div>
+          <input type="text" placeholder="Tìm kiếm trên Pconnect" />
+        </div>
+
+        <div class="nav-center">
+          <a
+            class="nav-icon active"
+            href="#home"
+            data-view-nav="home"
+            onclick="showView('home')"
+            >🏠</a
+          >
+          <a
+            class="nav-icon"
+            href="#reels"
+            data-view-nav="reels"
+            onclick="showView('reels')"
+            >🎬</a
+          >
+          <a
+            class="nav-icon"
+            href="#shopping"
+            data-view-nav="shopping"
+            onclick="showView('shopping')"
+            >&#128722;</a
+          >
+          <a
+            class="nav-icon"
+            href="#friends"
+            data-view-nav="friends"
+            onclick="showView('friends')"
+            >👥</a
+          >
+        </div>
+
+        <div class="nav-right">
+          <a class="nav-icon" href="./cart.html">🧺</a>
+          <button class="nav-icon">➕</button>
+          <button class="nav-icon" onclick="toggleChat()">💬</button>
+          <button
+            class="nav-icon notification-button"
+            id="notificationButton"
+            type="button"
+            onclick="toggleNotificationPanel()"
+          >
+            🔔
+            <span class="notification-badge" id="notificationBadge"></span>
+          </button>
+          <button class="profile-button" id="profileButton" type="button">
+            <span class="profile-avatar" data-user-avatar>P</span>
+            <span id="navProfileName">Profile</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <!-- HOME VIEW -->
+      <section class="view-section active" id="homeView">
+        <section class="create-post">
+          <div class="post-top">
+            <div class="user-avatar" data-user-avatar>P</div>
+            <input type="text" id="postInput" placeholder="Bạn đang nghĩ gì?" />
+          </div>
+
+          <div class="post-image-preview" id="postImagePreview"></div>
+
+          <div class="post-actions">
+            <label class="media-upload-btn" for="postImageInput" title="Tải ảnh"
+              >🖼️</label
+            >
+            <input
+              type="file"
+              id="postImageInput"
+              accept="image/*"
+              onchange="previewPostMedia(event, 'image')"
+            />
+            <label
+              class="media-upload-btn"
+              for="postVideoInput"
+              title="Tải video"
+              >🎬</label
+            >
+            <input
+              type="file"
+              id="postVideoInput"
+              accept="video/*"
+              onchange="previewPostMedia(event, 'video')"
+            />
+            <button id="createPostBtn" onclick="createPost()" title="Đăng bài">
+              ⬆
+            </button>
+          </div>
+        </section>
+
+        <section class="post-feed" id="postFeed">
+          <p class="feed-status">Đang tải bài viết...</p>
+        </section>
+      </section>
+
+      <!-- REELS VIEW -->
+      <section class="view-section" id="reelsView">
+        <section class="reels-heading">
+          <div>
+            <h1>Reels</h1>
+            <p>Xem video ngắn và chia sẻ khoảnh khắc của bạn.</p>
+          </div>
+          <button
+            class="open-reel-composer"
+            type="button"
+            onclick="toggleReelComposer()"
+          >
+            ⬆ Đăng reels
+          </button>
+        </section>
+
+        <section class="reel-composer" id="reelComposer">
+          <div class="reel-composer-header">
+            <h2>Tạo reels mới</h2>
+            <button type="button" onclick="toggleReelComposer()">×</button>
+          </div>
+
+          <input
+            type="text"
+            id="reelTitleInput"
+            placeholder="Nhập title cho reels..."
+          />
+
+          <div class="reel-preview" id="reelPreview">
+            <span>Chọn một clip ngắn từ máy của bạn</span>
+          </div>
+
+          <div class="reel-composer-actions">
+            <label class="reel-file-btn" for="reelVideoInput"
+              >🎬 Tải clip</label
+            >
+            <input
+              type="file"
+              id="reelVideoInput"
+              accept="video/*"
+              onchange="previewReelVideo(event)"
+            />
+            <button id="postReelBtn" type="button" onclick="postReel()">
+              ⬆ Post
+            </button>
+          </div>
+        </section>
+
+        <section class="reels-feed" id="reelsFeed">
+          <p class="feed-status">Đang tải reels...</p>
+        </section>
+      </section>
+
+      <!-- SHOPPING VIEW -->
+      <section class="view-section" id="shoppingView">
+        <section class="shop-main">
+          <section class="shop-hero">
+            <div>
+              <p class="eyebrow">Cửa hàng Pconnect</p>
+              <h1>Khám phá sản phẩm hấp dẫn</h1>
+              <p class="hero-copy">
+                Mua sắm dễ dàng với các mặt hàng được chọn lọc, giá tốt và giao
+                diện thân thiện.
+              </p>
+            </div>
+            <div class="hero-actions" aria-label="Bộ lọc sản phẩm">
+              <button class="sell-product-btn" type="button" onclick="toggleProductComposer()">
+                Đăng bán sản phẩm
+              </button>
+              <button class="pill active" type="button" data-shop-filter="new">
+                Mới nhất
+              </button>
+              <button class="pill" type="button" data-shop-filter="best">
+                Bán chạy
+              </button>
+              <button class="pill" type="button" data-shop-filter="sale">
+                Khuyến mãi
+              </button>
+              <a class="cart-page-btn" href="./cart.html">Giỏ hàng</a>
+            </div>
+          </section>
+
+          <section class="product-composer" id="productComposer">
+            <div class="product-composer-header">
+              <h2>Đăng sản phẩm muốn bán</h2>
+              <button type="button" onclick="toggleProductComposer()">×</button>
+            </div>
+            <input type="text" id="productNameInput" placeholder="Nhập tiêu đề sản phẩm" />
+            <input type="number" id="productPriceInput" min="0" step="1000" placeholder="Đặt giá bán" />
+            <textarea id="productDescriptionInput" rows="3" placeholder="Mô tả sản phẩm"></textarea>
+            <input type="file" id="productImageInput" accept="image/*" />
+            <button class="submit-product-btn" id="submitProductBtn" type="button" onclick="postProduct()">Xác nhận đăng sản phẩm</button>
+          </section>
+
+          <section class="product-grid" id="productGrid">
+            <div class="grid-message">Đang tải sản phẩm...</div>
+          </section>
+        </section>
+      </section>
+
+      <!-- FRIENDS VIEW -->
+      <section class="view-section" id="friendsView">
+        <section class="friends-heading">
+          <h1>Khám phá sản phẩm hấp dẫn</h1>
+          <p>Demo lời mời kết bạn dành cho phần chấm điểm.</p>
+        </section>
+
+        <section class="friend-requests" id="friendRequests"></section>
+      </section>
+
+      <section class="profile-panel" id="profilePanel">
+        <div class="profile-card-top">
+          <div class="profile-avatar-large" data-user-avatar>P</div>
+          <div>
+            <h3 id="profileName">Profile</h3>
+            <p id="profileEmail"></p>
+          </div>
+        </div>
+
+        <div class="profile-theme-row">
+          <span>Chế độ giao diện</span>
+          <button
+            class="theme-toggle-btn"
+            id="darkModeBtn"
+            type="button"
+            onclick="toggleDarkMode()"
+          >
+            Tối
+          </button>
+        </div>
+
+        <label class="avatar-upload-btn" for="avatarInput"
+          >Tải ảnh đại diện</label
+        >
+        <input type="file" id="avatarInput" accept="image/*" />
+        <button class="logout-btn" id="logoutBtn" type="button">
+          Đăng xuất
+        </button>
+      </section>
+
+      <section class="notification-panel" id="notificationPanel">
+        <div class="notification-header">
+          <h3>Thông báo</h3>
+          <button type="button" onclick="toggleNotificationPanel()">×</button>
+        </div>
+        <div id="notificationList"></div>
+      </section>
+
+      <div class="notification-popup" id="notificationPopup"></div>
+
+      <section class="chat-box" id="chatBox">
+        <div class="chat-header">
+          <span>Pconnect Chat</span>
+          <div class="chat-actions">
+            <button onclick="toggleChat()">−</button>
+            <button onclick="toggleChat()">×</button>
+          </div>
+        </div>
+
+        <div class="chat-body" id="chatBody">
+          <div class="message other">
+            Xin chào, mình là Pconnect AI. Bạn có thể hỏi mình về cách dùng
+            trang, đăng bài, avatar hoặc dark mode.
+          </div>
+        </div>
+
+        <div class="chat-input">
+          <input
+            type="text"
+            id="chatInput"
+            placeholder="Nhập tin nhắn..."
+            onkeydown="handleChatKey(event)"
+          />
+          <button type="button" onclick="sendChatMessage()">➤</button>
+        </div>
+      </section>
+
+      <aside class="chat-friend-rail" id="chatFriendRail"></aside>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <h3>Pconnect</h3>
+          <p>
+            Mạng xã hội demo giúp người dùng kết bạn, giao lưu và chia sẻ bài
+            viết.
+          </p>
+        </div>
+
+        <div class="footer-info">
+          <p><strong>Nhà sáng lập:</strong> Phúc & Phước</p>
+          <p><strong>Hotline:</strong> 0123 456 789</p>
+          <p><strong>Email:</strong> support@pconnect.demo</p>
+        </div>
+
+        <div class="footer-copy">
+          <p>© 2026 Pconnect. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function showView(viewName) {
+        const allowedViews = ["home", "reels", "shopping", "friends"];
+        const nextView = allowedViews.includes(viewName) ? viewName : "home";
+
+        document.querySelectorAll(".view-section").forEach((section) => {
+          section.classList.toggle("active", section.id === `${nextView}View`);
+        });
+
+        document.querySelectorAll("[data-view-nav]").forEach((item) => {
+          item.classList.toggle("active", item.dataset.viewNav === nextView);
+        });
+
+        window.dispatchEvent(
+          new CustomEvent("pconnect:view-change", {
+            detail: { view: nextView },
+          }),
+        );
+
+        if (window.location.hash !== `#${nextView}`) {
+          history.pushState(null, "", `#${nextView}`);
+        }
+      }
+
+      function toggleChat() {
+        const chat = document.getElementById("chatBox");
+        const friendRail = document.getElementById("chatFriendRail");
+
+        chat.classList.toggle("show");
+
+        if (!chat.classList.contains("show")) {
+          friendRail?.classList.remove("show");
+          return;
+        }
+
+        window.renderChatFriends?.();
+      }
+
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("collapsed");
+      }
+
+      window.addEventListener("popstate", () => {
+        const viewName = location.hash.replace("#", "") || "home";
+        showView(viewName);
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const viewName = location.hash.replace("#", "") || "home";
+        showView(viewName);
+      });
+    </script>
+
+    
+
+    <!-- CHATBASE -->
+    <script>
+      (function () {
+        if (!window.chatbase || window.chatbase("getState") !== "initialized") {
+          window.chatbase = (...arguments) => {
+            if (!window.chatbase.q) {
+              window.chatbase.q = [];
+            }
+            window.chatbase.q.push(arguments);
+          };
+          window.chatbase = new Proxy(window.chatbase, {
+            get(target, prop) {
+              if (prop === "q") {
+                return target.q;
+              }
+              return (...args) => target(prop, ...args);
+            },
+          });
+        }
+        const onLoad = function () {
+          const script = document.createElement("script");
+          script.src = "https://www.chatbase.co/embed.min.js";
+          script.id = "WaC4ZZsl7MMkhddc9o1w2";
+          script.domain = "www.chatbase.co";
+          document.body.appendChild(script);
+        };
+        if (document.readyState === "complete") {
+          onLoad();
+        } else {
+          window.addEventListener("load", onLoad);
+        }
+      })();
+    </script>
+
+    <script type="module" src="./js/profile-auth.js"></script>
+    <script type="module" src="./js/notifications.js"></script>
+    <script type="module" src="./js/index.js"></script>
+    <script type="module" src="./js/reels.js"></script>
+    <script type="module" src="./js/shopping.js"></script>
+    <script type="module" src="./js/friends.js"></script>
+  </body>
+</html>

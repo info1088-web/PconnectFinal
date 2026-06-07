@@ -1,0 +1,91 @@
+﻿<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pconnect Shopping</title>
+  <link rel="stylesheet" href="./css/main.css" />
+  <link rel="stylesheet" href="./css/shopping.css" />
+</head>
+<body class="shopping-page">
+  <header class="site-header">
+    <aside class="sidebar collapsed" id="sidebar">
+      <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+      <a class="sidebar-item" href="./index.html">🏠 <span>Trang chủ</span></a>
+      <a class="sidebar-item" href="./reels.html">🎬 <span>Reels</span></a>
+      <a class="sidebar-item active" href="./shopping.html"><span class="sidebar-icon">&#128722;</span> <span>Mua sắm</span></a>
+      <a class="sidebar-item" href="./cart.html">🧺 <span>Giỏ hàng</span></a>
+      <a class="sidebar-item" href="./friends.html">👥 <span>Bạn bè</span></a>
+    </aside>
+
+    <nav class="navbar">
+      <div class="nav-left">
+        <div class="logo">P</div>
+        <input type="search" placeholder="Tìm kiếm sản phẩm" aria-label="Tìm kiếm sản phẩm" />
+      </div>
+
+      <div class="nav-center">
+        <a class="nav-icon" href="./index.html">🏠</a>
+        <a class="nav-icon" href="./reels.html">🎬</a>
+        <a class="nav-icon active" href="./shopping.html">&#128722;</a>
+        <a class="nav-icon" href="./cart.html">🧺</a>
+        <a class="nav-icon" href="./friends.html">👥</a>
+      </div>
+
+      <div class="nav-right">
+        <a class="nav-icon" href="./cart.html">🧺</a>
+        <button class="nav-icon">🔔</button>
+        <button class="nav-icon">👤</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="shop-main">
+    <section class="shop-hero">
+      <div>
+        <p class="eyebrow">Cửa hàng Pconnect</p>
+        <h1>Khám phá sản phẩm hấp dẫn</h1>
+        <p class="hero-copy">Mua sắm dễ dàng với các mặt hàng được chọn lọc, giá tốt và giao diện thân thiện.</p>
+      </div>
+      <div class="hero-actions" aria-label="Bộ lọc sản phẩm">
+        <button class="sell-product-btn" type="button" onclick="toggleProductComposer()">Đăng bán sản phẩm</button>
+        <button class="pill active" type="button" data-shop-filter="new">Mới nhất</button>
+        <button class="pill" type="button" data-shop-filter="best">Bán chạy</button>
+        <button class="pill" type="button" data-shop-filter="sale">Khuyến mãi</button>
+        <a class="cart-page-btn" href="./cart.html">Giỏ hàng</a>
+      </div>
+    </section>
+
+    <section class="product-composer" id="productComposer">
+      <div class="product-composer-header">
+        <h2>Đăng sản phẩm muốn bán</h2>
+        <button type="button" onclick="toggleProductComposer()">×</button>
+      </div>
+      <input type="text" id="productNameInput" placeholder="Nhập tiêu đề sản phẩm" />
+      <input type="number" id="productPriceInput" min="0" step="1000" placeholder="Đặt giá bán" />
+      <textarea id="productDescriptionInput" rows="3" placeholder="Mô tả sản phẩm"></textarea>
+      <input type="file" id="productImageInput" accept="image/*" />
+      <button class="submit-product-btn" id="submitProductBtn" type="button" onclick="postProduct()">Xác nhận đăng sản phẩm</button>
+    </section>
+
+    <section class="product-grid" id="productGrid">
+      <div class="grid-message">Đang tải sản phẩm...</div>
+    </section>
+  </main>
+
+  <section class="cart-panel" id="cartPanel">
+    <div class="cart-header">
+      <h3>Giỏ hàng</h3>
+      <button type="button" onclick="toggleCartPanel()">×</button>
+    </div>
+    <div class="cart-list" id="cartList"></div>
+    <div class="cart-total" id="cartTotal">Tổng cộng: 0đ</div>
+  </section>
+  <script>
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("collapsed");
+    }
+  </script>
+  <script type="module" src="./js/shopping.js"></script>
+</body>
+</html>

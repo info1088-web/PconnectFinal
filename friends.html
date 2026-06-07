@@ -1,0 +1,112 @@
+﻿<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bạn bè - Pconnect</title>
+  <link rel="stylesheet" href="./css/main.css" />
+  <link rel="stylesheet" href="./css/friends.css" />
+</head>
+<body>
+  <header class="site-header">
+    <aside class="sidebar collapsed" id="sidebar">
+      <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+      <a class="sidebar-item" href="./index.html">🏠 <span>Trang chủ</span></a>
+      <a class="sidebar-item" href="./reels.html">🎬 <span>Reels</span></a>
+      <a class="sidebar-item" href="./index.html#shopping"><span class="sidebar-icon">&#128722;</span> <span>Mua sắm</span></a>
+      <a class="sidebar-item active" href="./friends.html">👥 <span>Bạn bè</span></a>
+      <button class="sidebar-item" type="button" onclick="toggleNotificationPanel()">🔔 <span>Thông báo</span></button>
+    </aside>
+
+    <nav class="navbar">
+      <div class="nav-left">
+        <div class="logo">P</div>
+        <input type="text" placeholder="Tìm kiếm bạn bè trên Pconnect" />
+      </div>
+
+      <div class="nav-center">
+        <a class="nav-icon" href="./index.html">🏠</a>
+        <a class="nav-icon" href="./reels.html">🎬</a>
+        <a class="nav-icon" href="./index.html#shopping">&#128722;</a>
+        <a class="nav-icon active" href="./friends.html">👥</a>
+      </div>
+
+      <div class="nav-right">
+        <button class="nav-icon notification-button" id="notificationButton" type="button" onclick="toggleNotificationPanel()">
+          🔔
+          <span class="notification-badge" id="notificationBadge"></span>
+        </button>
+        <button class="profile-button" id="profileButton" type="button">
+          <span class="profile-avatar" data-user-avatar>P</span>
+          <span id="navProfileName">Profile</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="friends-main">
+    <section class="friends-heading">
+      <h1>Bạn bè</h1>
+      <p>Demo lời mời kết bạn dành cho phần chấm điểm.</p>
+    </section>
+
+    <section class="friend-requests" id="friendRequests"></section>
+
+    <section class="profile-panel" id="profilePanel">
+      <div class="profile-card-top">
+        <div class="profile-avatar-large" data-user-avatar>P</div>
+        <div>
+          <h3 id="profileName">Profile</h3>
+          <p id="profileEmail"></p>
+        </div>
+      </div>
+
+      <div class="profile-theme-row">
+        <span>Chế độ giao diện</span>
+        <button class="theme-toggle-btn" id="darkModeBtn" type="button" onclick="toggleDarkMode()">Tối</button>
+      </div>
+
+      <label class="avatar-upload-btn" for="avatarInput">Tải ảnh đại diện</label>
+      <input type="file" id="avatarInput" accept="image/*" />
+      <button class="logout-btn" id="logoutBtn" type="button">Đăng xuất</button>
+    </section>
+
+    <section class="notification-panel" id="notificationPanel">
+      <div class="notification-header">
+        <h3>Thông báo</h3>
+        <button type="button" onclick="toggleNotificationPanel()">×</button>
+      </div>
+      <div id="notificationList"></div>
+    </section>
+
+    <div class="notification-popup" id="notificationPopup"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>Pconnect</h3>
+        <p>Mạng xã hội demo giúp người dùng kết bạn, giao lưu và chia sẻ bài viết.</p>
+      </div>
+      <div class="footer-info">
+        <p><strong>Nhà sáng lập:</strong> Phúc & Phước</p>
+        <p><strong>Hotline:</strong> 0123 456 789</p>
+        <p><strong>Email:</strong> support@pconnect.demo</p>
+      </div>
+      <div class="footer-copy">
+        <p>© 2026 Pconnect. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("collapsed");
+    }
+  </script>
+  <script type="module" src="./js/profile-auth.js"></script>
+  <script type="module" src="./js/notifications.js"></script>
+  <script type="module" src="./js/friends.js"></script>
+</body>
+</html>

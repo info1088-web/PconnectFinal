@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giỏ hàng - Pconnect</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/shopping.css" />
+  </head>
+
+  <body class="shopping-page">
+    <header class="site-header">
+      <aside class="sidebar collapsed" id="sidebar">
+        <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+        <a
+          class="sidebar-item active"
+          href="./index.html"
+          data-view-nav="home"
+          onclick="showView('home')"
+          >🏠 <span>Trang chủ</span></a
+        >
+        <a
+          class="sidebar-item"
+          href="./reels.html"
+          data-view-nav="reels"
+          onclick="showView('reels')"
+          >🎬 <span>Reels</span></a
+        >
+        <a
+          class="sidebar-item"
+          href="./shopping.html"
+          data-view-nav="shopping"
+          onclick="showView('shopping')"
+          ><span class="sidebar-icon">&#128722;</span> <span>Mua sắm</span></a
+        >
+        <a
+          class="sidebar-item"
+          href="./friends.html"
+          data-view-nav="friends"
+          onclick="showView('friends')"
+          >👥 <span>Bạn bè</span></a
+        >
+        <button
+          class="sidebar-item"
+          type="button"
+          onclick="toggleNotificationPanel()"
+        >
+          🔔 <span>Thông báo</span>
+        </button>
+        <a class="sidebar-item" href="./cart.html">🧺 <span>Giỏ hàng</span></a>
+      </aside>
+
+      <nav class="navbar">
+        <div class="nav-left">
+          <div class="logo">P</div>
+          <input type="text" placeholder="Tìm kiếm trên Pconnect" />
+        </div>
+
+        <div class="nav-center">
+          <a
+            class="nav-icon active"
+            href="./index.html"
+            data-view-nav="home"
+            onclick="showView('home')"
+            >🏠</a
+          >
+          <a
+            class="nav-icon"
+            href="./reels.html"
+            data-view-nav="reels"
+            onclick="showView('reels')"
+            >🎬</a
+          >
+          <a
+            class="nav-icon"
+            href="./shopping.html"
+            data-view-nav="shopping"
+            onclick="showView('shopping')"
+            >&#128722;</a
+          >
+          <a
+            class="nav-icon"
+            href="./friends.html"
+            data-view-nav="friends"
+            onclick="showView('friends')"
+            >👥</a
+          >
+        </div>
+
+        <div class="nav-right">
+          <a class="nav-icon" href="./cart.html">🧺</a>
+          <button class="nav-icon">➕</button>
+          <button class="nav-icon" onclick="toggleChat()">💬</button>
+          <button
+            class="nav-icon notification-button"
+            id="notificationButton"
+            type="button"
+            onclick="toggleNotificationPanel()"
+          >
+            🔔
+            <span class="notification-badge" id="notificationBadge"></span>
+          </button>
+          <button class="profile-button" id="profileButton" type="button">
+            <span class="profile-avatar" data-user-avatar>P</span>
+            <span id="navProfileName">Profile</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="shop-main">
+      <section class="shop-hero">
+        <div>
+          <p class="eyebrow">Pconnect Shopping</p>
+          <h1>Giỏ hàng của bạn</h1>
+          <p id="cartPageCount">Đang tải...</p>
+        </div>
+
+        <div class="hero-actions">
+          <a class="cart-page-btn" href="./shopping.html">← Tiếp tục mua sắm</a>
+        </div>
+      </section>
+
+      <div id="cartPageList" class="cart-page-list"></div>
+
+      <section class="cart-summary-section">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+          "
+        >
+          <div>
+            <span>Tổng cộng:</span>
+            <strong id="cartPageTotal">0đ</strong>
+          </div>
+
+          <!-- ✅ FIX QUAN TRỌNG: THANH TOÁN ALL -->
+          <a href="./checkout.html?type=cart" class="checkout-all-btn">
+            Thanh toán tất cả →
+          </a>
+        </div>
+      </section>
+
+      <section class="profile-panel" id="profilePanel">
+        <div class="profile-card-top">
+          <div class="profile-avatar-large" data-user-avatar>P</div>
+
+          <div>
+            <h3 id="profileName">Profile</h3>
+            <p id="profileEmail"></p>
+          </div>
+        </div>
+
+        <label class="avatar-upload-btn" for="avatarInput">
+          Tải ảnh đại diện
+        </label>
+
+        <div class="profile-theme-row">
+          <span>Chế độ giao diện</span>
+
+          <button
+            class="theme-toggle-btn"
+            id="darkModeBtn"
+            type="button"
+            onclick="toggleDarkMode()"
+          >
+            Tối
+          </button>
+        </div>
+
+        <input type="file" id="avatarInput" accept="image/*" />
+
+        <button class="logout-btn" id="logoutBtn" type="button">
+          Đăng xuất
+        </button>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <h3>Pconnect</h3>
+          <p>Mua sắm nhanh, thanh toán dễ dàng.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function toggleSidebar() {
+        document.getElementById("sidebar").classList.toggle("collapsed");
+      }
+    </script>
+
+    <script type="module" src="./js/cart.js"></script>
+    <script type="module" src="./js/profile-auth.js"></script>
+    <script type="module" src="./js/notifications.js"></script>
+    <script>
+      function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+
+        const enabled = document.body.classList.contains("dark-mode");
+
+        localStorage.setItem("darkMode", enabled);
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const enabled = localStorage.getItem("darkMode") === "true";
+
+        if (enabled) {
+          document.body.classList.add("dark-mode");
+        }
+      });
+    </script>
+  </body>
+</html>

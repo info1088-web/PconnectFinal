@@ -1,0 +1,124 @@
+/* =========================
+   LAYOUT TRANG FRIENDS
+   ========================= */
+.friends-main {
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  margin-top: 80px;
+  padding: 20px 20px 32px 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.friends-heading,
+.friend-requests {
+  width: min(720px, 100%);
+}
+
+.friends-heading h1 {
+  color: #111827;
+  font-size: 28px;
+}
+
+.friends-heading p {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* =========================
+   CARD LỜI MỜI KẾT BẠN
+   ========================= */
+.friend-requests {
+  display: grid;
+  gap: 14px;
+}
+
+.friend-card,
+.friends-empty {
+  padding: 16px;
+  border-radius: 14px;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.friend-card {
+  display: grid;
+  grid-template-columns: 58px 1fr auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.friend-card img {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.friend-info h3 {
+  color: #111827;
+  font-size: 16px;
+}
+
+.friend-info p,
+.friends-empty p {
+  margin-top: 4px;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.friend-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.friend-actions button {
+  padding: 9px 12px;
+  border: none;
+  border-radius: 10px;
+  background: #f97316;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.friend-actions .deny-btn {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+/* =========================
+   DARK MODE FRIENDS
+   ========================= */
+body.dark-mode .friends-heading h1,
+body.dark-mode .friend-info h3,
+body.dark-mode .friends-empty h3 {
+  color: white;
+}
+
+body.dark-mode .friends-heading p,
+body.dark-mode .friend-info p,
+body.dark-mode .friends-empty p {
+  color: #d1d5db;
+}
+
+body.dark-mode .friend-card,
+body.dark-mode .friends-empty {
+  background: #1e1e1e;
+}
+
+body.dark-mode .friend-actions .deny-btn {
+  background: #2a2a2a;
+}
+
+@media (max-width: 700px) {
+  .friend-card {
+    grid-template-columns: 52px 1fr;
+  }
+
+  .friend-actions {
+    grid-column: 1 / -1;
+  }
+}

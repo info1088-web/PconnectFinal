@@ -1,0 +1,336 @@
+/* =========================
+   LAYOUT CHÍNH CỦA TRANG REELS
+   ========================= */
+.reels-main {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 80px);
+  min-height: calc(100vh - 80px);
+  margin-top: 80px;
+  padding: 0 20px 0 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.reels-heading {
+  position: absolute;
+  top: 18px;
+  right: 28px;
+  z-index: 20;
+  width: auto;
+}
+
+.reels-heading h1,
+.reels-heading p {
+  display: none;
+}
+
+.open-reel-composer {
+  padding: 11px 16px;
+  border: none;
+  border-radius: 999px;
+  background: #f97316;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 10px 28px rgba(249,115,22,0.28);
+}
+
+/* =========================
+   FORM ĐĂNG REELS
+   ========================= */
+.reel-composer {
+  position: absolute;
+  top: 74px;
+  right: 28px;
+  z-index: 25;
+  width: min(340px, calc(100vw - 130px));
+  display: none;
+  padding: 16px;
+  border-radius: 14px;
+  background: white;
+  box-shadow: 0 18px 45px rgba(15,23,42,0.18);
+}
+
+.reel-composer.show {
+  display: block;
+}
+
+.reel-composer-header {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reel-composer-header h2 {
+  color: #111827;
+  font-size: 18px;
+}
+
+.reel-composer-header button {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 50%;
+  background: #f3f4f6;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+#reelTitleInput {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 11px 14px;
+  border: none;
+  border-radius: 12px;
+  background: #f3f4f6;
+  outline: none;
+}
+
+.reel-preview {
+  min-height: 150px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  border: 1px dashed #fed7aa;
+  border-radius: 14px;
+  background: #fff7ed;
+  color: #9a3412;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reel-preview video {
+  width: 100%;
+  max-height: 260px;
+  object-fit: cover;
+}
+
+.reel-composer-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+#reelVideoInput {
+  display: none;
+}
+
+.reel-file-btn,
+#postReelBtn {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  background: #f97316;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+#postReelBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+/* =========================
+   TRẢI NGHIỆM REELS KIỂU LƯỚT DỌC
+   ========================= */
+.reels-feed {
+  width: min(430px, calc(100vw - 150px));
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  border-radius: 22px;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: auto;
+  background: transparent;
+}
+
+.reel-card {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 22px;
+  background: transparent;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.58;
+  transform: scale(0.965);
+  transition: opacity 520ms ease, transform 720ms cubic-bezier(0.22, 1, 0.36, 1), filter 520ms ease;
+  filter: brightness(0.82);
+  will-change: opacity, transform;
+}
+
+.reel-card.active {
+  opacity: 1;
+  transform: scale(1);
+  filter: brightness(1);
+}
+
+.reel-card.near-active {
+  opacity: 0.76;
+  transform: scale(0.985);
+}
+
+.reel-card video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  object-fit: cover;
+  transform: scale(1.01);
+  transition: transform 850ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reel-card.active video {
+  transform: scale(1);
+}
+
+.delete-reel-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 6;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.42);
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  opacity: 0;
+  transform: translateY(-4px) scale(0.96);
+  transition: background 180ms ease, opacity 180ms ease, transform 180ms ease;
+}
+
+.reel-card:hover .delete-reel-btn,
+.delete-reel-btn:focus-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.delete-reel-btn:hover {
+  background: #dc2626;
+}
+
+.reel-info {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  padding: 22px 18px 34px;
+  border-radius: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.82),
+    rgba(0,0,0,0.32),
+    transparent
+  );
+}
+
+.reel-info span {
+  color: #fed7aa;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.reel-info h3 {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.reel-info p {
+  margin-top: 4px;
+  color: #d1d5db;
+  font-size: 13px;
+}
+
+.reel-scroll-hint {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* =========================
+   DARK MODE CHO REELS
+   ========================= */
+body.dark-mode .reels-heading h1,
+body.dark-mode .reel-composer-header h2 {
+  color: white;
+}
+
+body.dark-mode .reels-heading p {
+  color: #d1d5db;
+}
+
+body.dark-mode .reel-composer {
+  background: #1e1e1e;
+}
+
+body.dark-mode .reel-preview,
+body.dark-mode #reelTitleInput,
+body.dark-mode .reel-composer-header button {
+  background: #2a2a2a;
+  border-color: #333;
+}
+
+/* =========================
+   RESPONSIVE TRANG REELS
+   ========================= */
+@media (max-width: 900px) {
+  .reels-main {
+    padding-left: 90px;
+  }
+
+  .reels-heading {
+    top: 14px;
+    right: 14px;
+  }
+
+  .reel-composer {
+    top: 64px;
+    right: 14px;
+    width: min(320px, calc(100vw - 118px));
+  }
+
+  .reels-feed {
+    width: min(390px, calc(100vw - 112px));
+  }
+}
+
+/* =========================
+   REELS KHI CHẠY TRONG INDEX
+   ========================= */
+body:has(#reelsView.active) .main-content {
+  height: calc(100vh - 80px);
+  min-height: calc(100vh - 80px);
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#reelsView {
+  position: relative;
+}
+
+#reelsView.active {
+  height: calc(100vh - 80px);
+  min-height: calc(100vh - 80px);
+  justify-content: center;
+  gap: 0;
+}

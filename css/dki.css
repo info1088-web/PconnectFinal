@@ -1,0 +1,406 @@
+/* =========================
+   RESET VÀ NỀN TRANG ĐĂNG KÝ
+   ========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", "Segoe UI", sans-serif;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: linear-gradient(180deg, #f28c45, #f5a25d, #e6b89c);
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   ẢNH NỀN
+   ========================= */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: url("./pic/back_signup.jpg") repeat;
+  background-size: 300px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* =========================
+   HEADER
+   ========================= */
+.auth-header {
+  position: relative;
+  z-index: 1;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+.logo {
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(26, 23, 23, 0.7);
+  text-align: center;
+}
+
+/* =========================
+   MAIN
+   ========================= */
+.auth-main {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  width: 100%;
+  padding: 20px 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================
+   CARD FORM
+   ========================= */
+.card {
+  width: 100%;
+  max-width: 380px;
+  padding: 40px 30px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: fadeIn 0.8s ease;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #ff8c42;
+  font-size: 30px;
+}
+
+/* =========================
+   INPUT VÀ FLOATING LABEL
+   ========================= */
+.input-group {
+  position: relative;
+  margin: 20px 0;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 42px 12px 12px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: transparent;
+  color: white;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.input-group input:focus {
+  border-color: #ff8c42;
+  box-shadow: 0 0 10px rgba(255, 140, 66, 0.3);
+}
+
+.input-group label {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  color: #fff3e8;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: 0.3s;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+  top: -8px;
+  left: 10px;
+  padding: 0 5px;
+  color: #c56308;
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+}
+
+/* =========================
+   PASSWORD BUTTON
+   ========================= */
+.password-group button {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: auto;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #c56308;
+  cursor: pointer;
+  font-size: 16px;
+  opacity: 0.8;
+  transform: translateY(-50%);
+  transition: 0.2s;
+}
+
+.password-group button:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.15);
+}
+
+/* =========================
+   BUTTON ĐĂNG KÝ
+   ========================= */
+button[type="submit"] {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ff8c42, #f97316);
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  box-shadow: 0 0 15px rgba(249, 115, 22, 0.4);
+  transform: scale(1.03);
+}
+
+/* =========================
+   LINK
+   ========================= */
+p {
+  margin-top: 15px;
+  color: #c56308;
+  font-size: 14px;
+}
+
+a {
+  color: #c56308;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+.auth-footer {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 18px 16px;
+  background: rgba(124, 45, 18, 0.88);
+  text-align: center;
+}
+
+.auth-footer p {
+  margin: 4px 0;
+  color: white;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* =========================
+   ANIMATION
+   ========================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   RESPONSIVE TABLET
+   ========================= */
+@media (max-width: 992px) {
+  .logo {
+    font-size: 34px;
+  }
+
+  .card {
+    max-width: 420px;
+    padding: 35px 28px;
+  }
+}
+
+/* =========================
+   RESPONSIVE MOBILE
+   ========================= */
+@media (max-width: 768px) {
+  body::before {
+    background-size: 220px;
+    opacity: 0.45;
+  }
+
+  .auth-header {
+    min-height: 70px;
+  }
+
+  .logo {
+    font-size: 30px;
+    letter-spacing: 1px;
+  }
+
+  .auth-main {
+    padding: 20px 14px 30px;
+  }
+
+  .card {
+    max-width: 100%;
+    padding: 30px 22px;
+    border-radius: 18px;
+  }
+
+  h2 {
+    font-size: 26px;
+    margin-bottom: 18px;
+  }
+
+  .input-group {
+    margin: 18px 0;
+  }
+
+  .input-group input {
+    font-size: 15px;
+  }
+
+  .input-group label {
+    font-size: 14px;
+  }
+
+  button[type="submit"] {
+    font-size: 15px;
+  }
+
+  .auth-footer {
+    padding: 16px 12px;
+  }
+
+  .auth-footer p {
+    font-size: 12px;
+  }
+}
+
+/* =========================
+   SMALL MOBILE
+   ========================= */
+@media (max-width: 480px) {
+  .logo {
+    font-size: 25px;
+  }
+
+  .auth-main {
+    padding: 16px 10px 24px;
+  }
+
+  .card {
+    padding: 24px 18px;
+    border-radius: 16px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .input-group {
+    margin: 16px 0;
+  }
+
+  .input-group input {
+    font-size: 14px;
+    padding: 11px 40px 11px 11px;
+  }
+
+  .input-group label {
+    font-size: 13px;
+  }
+
+  .password-group button {
+    right: 8px;
+    font-size: 15px;
+  }
+
+  button[type="submit"] {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  p,
+  a {
+    font-size: 13px;
+  }
+
+  .auth-footer p {
+    font-size: 11px;
+  }
+}
+
+/* =========================
+   EXTRA SMALL DEVICES
+   ========================= */
+@media (max-width: 360px) {
+  .logo {
+    font-size: 22px;
+  }
+
+  .card {
+    padding: 20px 14px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .input-group input {
+    font-size: 13px;
+  }
+
+  button[type="submit"] {
+    font-size: 13px;
+  }
+}
+
+/* =========================
+   MÀN HÌNH THẤP CHIỀU CAO
+   ========================= */
+@media (max-height: 700px) {
+  .auth-main {
+    align-items: flex-start;
+  }
+
+  .card {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
